@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import About from "./components/About";
+import HrLogo from "./components/HrLogo";
+import Movies from "./components/Movies";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+    <div className="min-h-screen bg-amber-50">
+      <div className="container mx-auto bg-red-400  p-8 text-center min-w-full">
+        <p className="text-6xl text-gray-700 font-bold mb-5">Superior</p>
+        <p className="text-gray-200 font-semibold text-lg">
+          Tailwind in action
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      </div>
+      <div>
+        <About />
+        <HrLogo />
+        <Movies />
+      </div>
     </div>
   );
 }
