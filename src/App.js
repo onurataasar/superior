@@ -17,6 +17,7 @@ function App() {
         <HrLogo />
         <Movies />
       </div>
+      <div className="container mx-auto bg-red-400  p-8 text-center min-w-full"></div>
     </div>
   );
 }
