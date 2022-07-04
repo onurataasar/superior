@@ -16,97 +16,70 @@ const Movies = () => {
 
   function getRandom() {
     setRandom(Math.floor(Math.random() * 20));
-    console.log(random);
   }
-
   useEffect(() => {
-    var posterTrend = [];
-    var infoTrend = [];
-    var posterBest = [];
-    var infoBest = [];
-    const optionsTrend = {
+    const axiosInstance = axios.create({
       method: "GET",
-      url: "https://api.themoviedb.org/3/movie/popular?api_key=f70ce7435c3578276abcef7d2aec257f",
-    };
-    const optionsBest = {
-      method: "GET",
-      url: "https://api.themoviedb.org/3/movie/top_rated?api_key=f70ce7435c3578276abcef7d2aec257f",
-    };
-    axios
-      .request(optionsTrend)
+      baseURL: "https://api.themoviedb.org/3/",
+    });
+
+    axiosInstance
+      .request("movie/popular?api_key=f70ce7435c3578276abcef7d2aec257f")
       .then(function (response) {
-        for (var key of Object.keys(response.data.results)) {
-          posterTrend.push(
+        for (let key of Object.keys(response.data.results)) {
+          setTrend((prev) => [
+            ...prev,
             JSON.stringify(response.data.results[key].poster_path).replace(
               /["]+/g,
               ""
-            )
-          );
-          infoTrend.push(JSON.stringify(response.data.results[key].overview));
-          setTrend(posterTrend);
-          setTrendOverview(infoTrend);
+            ),
+          ]);
+          setTrendOverview((prev) => [
+            ...prev,
+            JSON.stringify(response.data.results[key].overview),
+          ]);
         }
       })
       .catch(function (error) {
         console.error(error);
       });
-    axios
-      .request(optionsBest)
+
+    axiosInstance
+      .request("movie/top_rated?api_key=f70ce7435c3578276abcef7d2aec257f")
       .then(function (response) {
-        for (var key of Object.keys(response.data.results)) {
-          posterBest.push(
+        for (let key of Object.keys(response.data.results)) {
+          setBest((prev) => [
+            ...prev,
             JSON.stringify(response.data.results[key].poster_path).replace(
               /["]+/g,
               ""
-            )
-          );
-          infoBest.push(JSON.stringify(response.data.results[key].overview));
-          setBest(posterBest);
-          setBestOverview(infoBest);
+            ),
+          ]);
+          setBestOverview((prev) => [
+            ...prev,
+            JSON.stringify(response.data.results[key].overview),
+          ]);
         }
       })
       .catch(function (error) {
         console.error(error);
       });
-  }, [trend, best]);
+  }, []);
 
   return (
     <div className={"text-center mt-6 overflow-x-scroll"}>
       <h1 className="text-4xl text-center text-gray-500 align-middle font-bold">
         Trending Movies
       </h1>
-      <MovieGrid
-        movie1={trend[0]}
-        movie2={trend[1]}
-        movie3={trend[2]}
-        movie4={trend[3]}
-        movie5={trend[4]}
-        overview1={trendOverview[0]}
-        overview2={trendOverview[1]}
-        overview3={trendOverview[2]}
-        overview4={trendOverview[3]}
-        overview5={trendOverview[4]}
-      />
-
+      <MovieGrid movie={trend} overview={trendOverview} />
       <div className="mt-8">
         <h1 className="text-4xl text-center text-gray-500 align-middle font-bold">
           Top Rated Movies
         </h1>
 
-        <MovieGrid
-          movie1={best[0]}
-          movie2={best[1]}
-          movie3={best[2]}
-          movie4={best[3]}
-          movie5={best[4]}
-          overview1={bestOverview[0]}
-          overview2={bestOverview[1]}
-          overview3={bestOverview[2]}
-          overview4={bestOverview[3]}
-          overview5={bestOverview[4]}
-        />
+        <MovieGrid movie={best} overview={bestOverview} />
       </div>
-      <RandomMovie random={best[random]} overview={trendOverview[random]} />
+      <RandomMovie random={best[random]} overview={bestOverview[random]} />
 
       <IconButton onClick={getRandom}>
         <Casino fontSize="large" />
