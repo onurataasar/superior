@@ -1,5 +1,6 @@
 import React from "react";
 import { Tooltip } from "@mui/material";
+import MovieDialog from "./MovieDialog";
 
 function RandomMovie(props) {
   const prefix = "https://image.tmdb.org/t/p/w220_and_h330_face";
@@ -16,6 +17,7 @@ function RandomMovie(props) {
           alt="random"
         ></img>
       </Tooltip>
+      <MovieDialog overview={props.overview} title={props.title} />
     </div>
   );
 }

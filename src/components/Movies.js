@@ -11,7 +11,9 @@ const Movies = () => {
   const [trend, setTrend] = useState([]);
   const [best, setBest] = useState([]);
   const [trendOverview, setTrendOverview] = useState([]);
+  const [trendTitle, setTrendTitle] = useState([]);
   const [bestOverview, setBestOverview] = useState([]);
+  const [bestTitle, setBestTitle] = useState([]);
   const [random, setRandom] = useState(12);
 
   function getRandom() {
@@ -38,6 +40,13 @@ const Movies = () => {
             ...prev,
             JSON.stringify(response.data.results[key].overview),
           ]);
+          setTrendTitle((prev) => [
+            ...prev,
+            JSON.stringify(response.data.results[key].title).replace(
+              /["]+/g,
+              ""
+            ),
+          ]);
         }
       })
       .catch(function (error) {
@@ -59,6 +68,13 @@ const Movies = () => {
             ...prev,
             JSON.stringify(response.data.results[key].overview),
           ]);
+          setBestTitle((prev) => [
+            ...prev,
+            JSON.stringify(response.data.results[key].title).replace(
+              /["]+/g,
+              ""
+            ),
+          ]);
         }
       })
       .catch(function (error) {
@@ -71,15 +87,19 @@ const Movies = () => {
       <h1 className="text-4xl text-center text-gray-500 align-middle font-bold">
         Trending Movies
       </h1>
-      <MovieGrid movie={trend} overview={trendOverview} />
+      <MovieGrid movie={trend} overview={trendOverview} title={trendTitle} />
       <div className="mt-8">
         <h1 className="text-4xl text-center text-gray-500 align-middle font-bold">
           Top Rated Movies
         </h1>
 
-        <MovieGrid movie={best} overview={bestOverview} />
+        <MovieGrid movie={best} overview={bestOverview} title={bestTitle} />
       </div>
-      <RandomMovie random={best[random]} overview={bestOverview[random]} />
+      <RandomMovie
+        random={best[random]}
+        overview={bestOverview[random]}
+        title={bestTitle[random]}
+      />
 
       <IconButton onClick={getRandom}>
         <Casino fontSize="large" />
