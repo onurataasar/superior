@@ -34,6 +34,11 @@ const MovieDialog = (props) => {
         <DialogTitle id="responsive-dialog-title">{props.title}</DialogTitle>
         <DialogContent>
           <DialogContentText>{props.overview}</DialogContentText>
+          <DialogContentText>
+            <div className="float-right mt-2">
+              <span className="font-bold">Release Date:</span> {props.year}{" "}
+            </div>
+          </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleDialogClose}>

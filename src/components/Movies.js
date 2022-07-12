@@ -12,8 +12,10 @@ const Movies = () => {
   const [best, setBest] = useState([]);
   const [trendOverview, setTrendOverview] = useState([]);
   const [trendTitle, setTrendTitle] = useState([]);
+  const [trendYear, setTrendYear] = useState([]);
   const [bestOverview, setBestOverview] = useState([]);
   const [bestTitle, setBestTitle] = useState([]);
+  const [bestYear, setBestYear] = useState([]);
   const [random, setRandom] = useState(12);
 
   function getRandom() {
@@ -47,6 +49,12 @@ const Movies = () => {
               ""
             ),
           ]);
+          setTrendYear((prev) => [
+            ...prev,
+            JSON.stringify(response.data.results[key].release_date)
+              .replace(/["]+/g, "")
+              .slice(0, 4),
+          ]);
         }
       })
       .catch(function (error) {
@@ -75,6 +83,12 @@ const Movies = () => {
               ""
             ),
           ]);
+          setBestYear((prev) => [
+            ...prev,
+            JSON.stringify(response.data.results[key].release_date)
+              .replace(/["]+/g, "")
+              .slice(0, 4),
+          ]);
         }
       })
       .catch(function (error) {
@@ -87,18 +101,29 @@ const Movies = () => {
       <h1 className="text-4xl text-center text-gray-500 align-middle font-bold">
         Trending Movies
       </h1>
-      <MovieGrid movie={trend} overview={trendOverview} title={trendTitle} />
+      <MovieGrid
+        movie={trend}
+        overview={trendOverview}
+        title={trendTitle}
+        year={trendYear}
+      />
       <div className="mt-8">
         <h1 className="text-4xl text-center text-gray-500 align-middle font-bold">
           Top Rated Movies
         </h1>
 
-        <MovieGrid movie={best} overview={bestOverview} title={bestTitle} />
+        <MovieGrid
+          movie={best}
+          overview={bestOverview}
+          title={bestTitle}
+          year={bestYear}
+        />
       </div>
       <RandomMovie
         random={best[random]}
         overview={bestOverview[random]}
         title={bestTitle[random]}
+        year={bestYear[random]}
       />
 
       <IconButton onClick={getRandom}>

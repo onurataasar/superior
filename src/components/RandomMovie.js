@@ -10,14 +10,18 @@ function RandomMovie(props) {
       <p className="text-2xl mt-4 text-gray-500 text-center font-bold">
         Random Movie
       </p>
-      <Tooltip title={props.overview} placement="left">
-        <img
-          className="rounded-xl mx-auto mt-4"
-          src={prefix + props.random}
-          alt="random"
-        ></img>
-      </Tooltip>
-      <MovieDialog overview={props.overview} title={props.title} />
+
+      <img
+        className="rounded-xl mx-auto mt-4"
+        src={prefix + props.random}
+        alt="random"
+      ></img>
+
+      <MovieDialog
+        overview={props.overview}
+        title={props.title}
+        year={props.year}
+      />
     </div>
   );
 }

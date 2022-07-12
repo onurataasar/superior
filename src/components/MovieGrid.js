@@ -13,10 +13,10 @@ const MovieGrid = (props) => {
     <div className="overflow-auto whitespace-nowrap mx-auto h-full ">
       <div className="inline-block">
         <Stack
-          sx={{ flexGrow: 1, marginTop: "18px" }}
+          sx={{ flexGrow: 1, marginTop: "20px" }}
           justifyContent="center"
           container="true"
-          spacing={4}
+          spacing={5}
           direction="row"
         >
           {props.overview.map((overview, ind) => (
@@ -27,7 +27,11 @@ const MovieGrid = (props) => {
                 alt="movie1"
               ></img>
 
-              <MovieDialog overview={overview} title={props.title[ind]} />
+              <MovieDialog
+                overview={overview}
+                title={props.title[ind]}
+                year={props.year[ind]}
+              />
             </div>
           ))}
         </Stack>
