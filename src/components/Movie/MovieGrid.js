@@ -31,6 +31,7 @@ const MovieGrid = (props) => {
                 overview={overview}
                 title={props.title[ind]}
                 year={props.year[ind]}
+                vote={props.vote[ind]}
               />
             </div>
           ))}

@@ -8,7 +8,6 @@ import {
   DialogContentText,
 } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
-
 import { useTheme } from "@emotion/react";
 import { useState } from "react";
 
@@ -35,8 +34,10 @@ const MovieDialog = (props) => {
         <DialogContent>
           <DialogContentText>{props.overview}</DialogContentText>
           <DialogContentText>
-            <div className="float-right mt-2">
-              <span className="font-bold">Release Date:</span> {props.year}{" "}
+            <div className="float-right mt-4">
+              <span className="font-bold">Release Date </span> {props.year}{" "}
+              <p></p>
+              <span className="font-bold"> Rating </span> {props.vote}
             </div>
           </DialogContentText>
         </DialogContent>

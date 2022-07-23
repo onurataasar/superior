@@ -13,9 +13,11 @@ const Movies = () => {
   const [trendOverview, setTrendOverview] = useState([]);
   const [trendTitle, setTrendTitle] = useState([]);
   const [trendYear, setTrendYear] = useState([]);
+  const [trendVote, setTrendVote] = useState([]);
   const [bestOverview, setBestOverview] = useState([]);
   const [bestTitle, setBestTitle] = useState([]);
   const [bestYear, setBestYear] = useState([]);
+  const [bestVote, setBestVote] = useState([]);
   const [random, setRandom] = useState(12);
 
   function getRandom() {
@@ -45,6 +47,13 @@ const Movies = () => {
           setTrendTitle((prev) => [
             ...prev,
             JSON.stringify(response.data.results[key].title).replace(
+              /["]+/g,
+              ""
+            ),
+          ]);
+          setTrendVote((prev) => [
+            ...prev,
+            JSON.stringify(response.data.results[key].vote_average).replace(
               /["]+/g,
               ""
             ),
@@ -83,6 +92,13 @@ const Movies = () => {
               ""
             ),
           ]);
+          setBestVote((prev) => [
+            ...prev,
+            JSON.stringify(response.data.results[key].vote_average).replace(
+              /["]+/g,
+              ""
+            ),
+          ]);
           setBestYear((prev) => [
             ...prev,
             JSON.stringify(response.data.results[key].release_date)
@@ -106,6 +122,7 @@ const Movies = () => {
         overview={trendOverview}
         title={trendTitle}
         year={trendYear}
+        vote={trendVote}
       />
       <div className="mt-8">
         <h1 className="text-4xl text-center text-gray-500 align-middle font-bold">
@@ -117,6 +134,7 @@ const Movies = () => {
           overview={bestOverview}
           title={bestTitle}
           year={bestYear}
+          vote={bestVote}
         />
       </div>
       <RandomMovie
@@ -124,6 +142,7 @@ const Movies = () => {
         overview={bestOverview[random]}
         title={bestTitle[random]}
         year={bestYear[random]}
+        vote={bestVote[random]}
       />
 
       <IconButton onClick={getRandom}>

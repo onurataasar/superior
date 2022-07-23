@@ -1,7 +1,8 @@
 import "./App.css";
 import About from "./components/About";
 import HrLogo from "./components/HrLogo";
-import Movies from "./components/Movies";
+import Movies from "./components/Movie/Movies";
+import Series from "./components/Series/Series";
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
         <About />
         <HrLogo />
         <Movies />
+        <HrLogo />
+        <Series />
       </div>
       <div className="container mx-auto bg-red-400  p-8 text-center min-w-full"></div>
     </div>

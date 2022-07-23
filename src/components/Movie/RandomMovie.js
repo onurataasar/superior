@@ -8,7 +8,7 @@ function RandomMovie(props) {
   return (
     <div>
       <p className="text-2xl mt-4 text-gray-500 text-center font-bold">
-        Random Movie
+        Roll a Dice
       </p>
 
       <img
@@ -21,6 +21,7 @@ function RandomMovie(props) {
         overview={props.overview}
         title={props.title}
         year={props.year}
+        vote={props.vote}
       />
     </div>
   );
