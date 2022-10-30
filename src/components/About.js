@@ -24,7 +24,7 @@ const About = () => {
           answer to the question “What movie should I watch?”! Your film choices
           are about to be simplified greatly.
         </p>
-        <div className="about-card-container grid grid-flow-col items-center justify-center grid-rows-2 gap-6 mt-12">
+        <div className="about-card-container  grid grid-flow-col items-center justify-center grid-rows-3 sm:grid-rows-2 gap-6 mt-12">
           <div className="about-card">
             <h1>
               Top tier <span className="font-bold"> trending movies</span> from
