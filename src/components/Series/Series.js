@@ -117,7 +117,19 @@ const Series = () => {
   }, []);
 
   return (
-    <div className={"text-center mt-6 overflow-x-scroll"}>
+    <div className={"text-center mt-6 overflow-x-scroll pb-12"}>
+      <h1 className="text-7xl font-bold text-slate-700">TV TIME</h1>
+      <RandomMovie
+        random={best[random]}
+        overview={bestOverview[random]}
+        title={bestTitle[random]}
+        year={bestYear[random]}
+        vote={bestVote[random]}
+      />
+
+      <IconButton onClick={getRandom}>
+        <Casino fontSize="large" />
+      </IconButton>
       <h1 className="text-4xl text-center text-gray-500 align-middle font-bold">
         Trending Series
       </h1>
@@ -141,17 +153,6 @@ const Series = () => {
           vote={bestVote}
         />
       </div>
-      <RandomMovie
-        random={best[random]}
-        overview={bestOverview[random]}
-        title={bestTitle[random]}
-        year={bestYear[random]}
-        vote={bestVote[random]}
-      />
-
-      <IconButton onClick={getRandom}>
-        <Casino fontSize="large" />
-      </IconButton>
     </div>
   );
 };

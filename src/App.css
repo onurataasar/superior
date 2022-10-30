@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+.about-card {
+  @apply flex bg-amber-100 text-center text-lg 
+  shadow-xl border border-solid border-amber-600 
+  flex-row gap-4 p-8 rounded-br-2xl rounded-tl-2xl hover:border-green-700;
+}

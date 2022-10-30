@@ -114,7 +114,18 @@ const Movies = () => {
 
   return (
     <div className={"text-center mt-6 overflow-x-scroll"}>
-      <h1 className="text-4xl text-center text-gray-500 align-middle font-bold">
+      <h1 className="text-7xl font-bold text-slate-700">MOVIE TIME</h1>
+      <RandomMovie
+        random={best[random]}
+        overview={bestOverview[random]}
+        title={bestTitle[random]}
+        year={bestYear[random]}
+        vote={bestVote[random]}
+      />
+      <IconButton onClick={getRandom}>
+        <Casino fontSize="large" />
+      </IconButton>
+      <h1 className="text-4xl text-center text-gray-500 align-middle font-bold mt-8">
         Trending Movies
       </h1>
       <MovieGrid
@@ -137,17 +148,6 @@ const Movies = () => {
           vote={bestVote}
         />
       </div>
-      <RandomMovie
-        random={best[random]}
-        overview={bestOverview[random]}
-        title={bestTitle[random]}
-        year={bestYear[random]}
-        vote={bestVote[random]}
-      />
-
-      <IconButton onClick={getRandom}>
-        <Casino fontSize="large" />
-      </IconButton>
     </div>
   );
 };
